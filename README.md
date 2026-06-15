@@ -1,44 +1,57 @@
 # Multi-Page-Weather-forecast-Application-with-State-Driven-Features-
 
-#Project: Multi-Page Application with State-Driven Features
+# 📱 Multi-Page Android App with State-Driven Features
 
-What It Is
-An Android app built with Jetpack Compose (Kotlin) that demonstrates two core Android development concepts — multi-screen navigation and state-driven UI — in a single, clean project.
+An Android application built using **Jetpack Compose (Kotlin)** that demonstrates modern Android development concepts including **multi-screen navigation**, **state-driven UI**, and **MVVM architecture**.
 
-Architecture Overview
-The app follows MVVM (Model-View-ViewModel) pattern with these layers:
+---
 
-UI Layer → Composable screens (WeatherScreen, CalculatorScreen)
-ViewModel Layer → WeatherViewModel, CalculatorViewModel (hold and manage UI state)
-Data Layer → Retrofit API client calling OpenWeatherMap REST API
+## 🚀 Project Overview
 
-State is managed via MutableStateFlow inside ViewModels, collected in the UI using collectAsState() — making the UI reactive and automatically recomposing on data changes.
+This app includes two main features:
 
-Screen 1: Weather Fetcher
+- 🌦️ Weather Fetcher (OpenWeatherMap API integration)
+- 🧮 Basic Calculator (Arithmetic operations with validation)
 
-User types a city name → taps Fetch Weather
-ViewModel fires an async coroutine (viewModelScope.launch) calling Retrofit
-Hits the OpenWeatherMap API (/data/2.5/weather) with city name and API key
-Displays city name and temperature in °C
-Handles loading state (button text changes to "Fetching...") and error states (city not found, network failure)
+Both modules are connected using **Jetpack Navigation Compose** with a bottom navigation bar and fully reactive UI.
 
-Screenshot shows: "China" entered → returns City: China, Temperature: 23.48°C
+---
 
-Screen 2: Basic Calculator
+## 🏗️ Architecture (MVVM)
 
-User enters Number A and Number B
-Four operation buttons: +, −, *, /
-ViewModel validates inputs (toDoubleOrNull()), handles division-by-zero, formats result to 2 decimal places
-Result displayed in red for errors, normal color for valid output
+### UI Layer
+- Jetpack Compose Screens
+- `WeatherScreen`, `CalculatorScreen`
+- Uses `collectAsState()` for reactive UI
 
-Screenshot shows: 15 * 3 = Result: 45.00
+### ViewModel Layer
+- `WeatherViewModel`
+- `CalculatorViewModel`
+- State handled using `MutableStateFlow`
 
-Navigation
+### Data Layer
+- Retrofit API Client
+- OpenWeatherMap REST API
 
-Bottom Navigation Bar with two tabs: Weather and Calculator
-Uses Jetpack Navigation Compose (NavHost, composable, navController)
-Navigation is set up with saveState = true and restoreState = true so each screen remembers its state when you switch tabs — a key detail worth mentioning
+---
 
+## 🔄 State Management
 
-Key Technologies to Name-Drop in Interview
-ConceptImplementationDeclarative UIJetpack ComposeState managementMutableStateFlow + StateFlowNavigationNavigation Compose, NavHostAsync/NetworkKotlin Coroutines + Retrofit2API parsingGson converterDesign systemMaterial 3 (NavigationBar, ElevatedButton, OutlinedTextField)ArchitectureMVVMThemeDynamic dark/light via isSystemInDarkTheme()
+- `MutableStateFlow` used for UI state
+- `StateFlow` observed in UI using `collectAsState()`
+- Ensures automatic recomposition on state updates
+
+### Handles:
+- Loading state
+- Success state
+- Error state (network/city not found)
+
+---
+
+## 🌦️ Weather Feature
+
+### Flow:
+1. User enters city name
+2. Clicks **Fetch Weather**
+3. ViewModel triggers coroutine (`viewModelScope.launch`)
+4. Retrofit calls API:
