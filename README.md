@@ -6,7 +6,7 @@ An Android application built using **Jetpack Compose (Kotlin)** that demonstrate
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 This app includes two main features:
 
@@ -17,7 +17,7 @@ Both modules are connected using **Jetpack Navigation Compose** with a bottom na
 
 ---
 
-## 🏗️ Architecture (MVVM)
+## Architecture (MVVM)
 
 ### UI Layer
 - Jetpack Compose Screens
@@ -35,7 +35,7 @@ Both modules are connected using **Jetpack Navigation Compose** with a bottom na
 
 ---
 
-## 🔄 State Management
+## State Management
 
 - `MutableStateFlow` used for UI state
 - `StateFlow` observed in UI using `collectAsState()`
@@ -55,3 +55,40 @@ Both modules are connected using **Jetpack Navigation Compose** with a bottom na
 2. Clicks **Fetch Weather**
 3. ViewModel triggers coroutine (`viewModelScope.launch`)
 4. Retrofit calls API:
+
+5. UI updates with:
+- City name
+- Temperature (°C)
+
+---
+
+## 🧮 Calculator Feature
+
+### Features:
+- Inputs: Number A, Number B
+- Operations: `+`, `-`, `*`, `/`
+
+### Validation:
+- Safe parsing using `toDoubleOrNull()`
+- Division-by-zero handling
+- Result formatted to 2 decimal places
+
+### UI Behavior:
+- Valid result → normal display
+- Error → displayed in red
+
+---
+
+## 🧭 Navigation
+
+- Bottom Navigation Bar:
+- 🌦️ Weather
+- 🧮 Calculator
+
+### Implementation:
+- Navigation Compose (`NavHost`, `composable`)
+- `navController` used for routing
+- State persistence enabled:
+```kotlin
+saveState = true,
+restoreState = true
